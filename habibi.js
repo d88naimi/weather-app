@@ -8,7 +8,7 @@ create a div buttons-container holding buttons
 add class/styles to buttons
 dynamically append new test search array buttons to div container 
 */
-var cities = ["San Diego", "Denver", "chicago", "los angeles"];
+var cities = ["San Diego", "Denver", "Chicago", "Los Angeles"];
 
 function displayCityInfo() {
   var selectedBut = $(this).attr("data-city");
@@ -28,9 +28,12 @@ function displayCityInfo() {
   }).then(function(response) {
     // Printing the entire object to console
     console.log(response);
-    var currentWeatherResponse ={
+    // currentWeatherResponse
+    var cwr ={
       cityName: response.name,
     }
+    var html = `<h1>${cwr.cityName}</h1>`;
+    $('#today').append(html);
   });
 }
 
@@ -52,7 +55,6 @@ function renderButtons() {
     butLi.append(buttonFly);
     $(".list-group").append(butLi);
   });
-  
 }
 
 $("#search-button").on("click", function(event) {
