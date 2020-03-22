@@ -44,7 +44,7 @@ function displayCityInfo() {
     <div class="border p-3 " > 
       <h1>${cwr.cityName}(${humanDateFormat(
       cwr.time
-    )})</h1><img src="http://openweathermap.org/img/w/${
+    )})</h1><img src="https://openweathermap.org/img/w/${
       cwr.icon
     }.png" alt="Weather Icon">
       <h3>${tempF.toFixed(2)}°F</h3>
@@ -64,7 +64,7 @@ function displayUVInfo(lat, lon) {
   // console.log(lat, lon);
   // Here we are building the URL we need to query the database
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+    "https://api.openweathermap.org/data/2.5/uvi?appid=" +
     APIKey +
     "&lat=" +
     lat +
