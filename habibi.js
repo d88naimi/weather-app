@@ -26,7 +26,7 @@ function displayCityInfo() {
     method: "GET"
   }).then(function(response) {
     // Printing the entire object to console
-    console.log(response);
+    // console.log(response);
     // currentWeatherResponse
     $("#today").empty();
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
@@ -52,6 +52,8 @@ function displayCityInfo() {
     `;
     $("#today").append(html);
     displayUVInfo(cwr.lat, cwr.lon);
+    displayForecast(selectedBut); 
+
   });
 }
 
@@ -70,7 +72,7 @@ function displayUVInfo(lat, lon) {
     method: "GET"
   }).then(function(response) {
     // Printing the entire object to console
-    console.log(response.value);
+    // console.log(response.value);
     var bgColor;
     if (response.value < 3) {
       bgColor = "success";
@@ -86,8 +88,45 @@ function displayUVInfo(lat, lon) {
     $("#today").append(index);
   });
 }
-
 displayUVInfo();
+
+function displayForecast(city) {
+  console.log(city);
+  $("#forecast").empty();
+
+  var queryURL =
+    "https://api.openweathermap.org/data/2.5/forecast?" +
+    "q=" +
+    city +
+    "&appid=" +
+    APIKey;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    // Printing the entire object to console
+    console.log(`5 Day forecast `);
+    console.log(response);
+    //each day loop will need and indivual card create for 5 days 
+    var forecastInfo = `
+    <h1>5 Day Forecast: </h1>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">David</h5>
+          <p class="card-text">Date:</p>
+          <p class="card-text">Icon:</p>
+          <p class="card-text">Temp:</p>
+          <p class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+    `;
+    $("#forecast").append(forecastInfo);
+  });
+}
+displayForecast();
+
+
 
 function renderButtons() {
   $(".list-group").empty();
