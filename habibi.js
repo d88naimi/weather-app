@@ -118,7 +118,7 @@ function displayForecast(city, icon) {
     console.log(fiveDay);
 
     var home = `
-        <div class="container-fluid">
+        <div class="container-fluid p-4">
         <h1>5 Day Forecast: </h1>
           <div class="row forecastHome">
           </div>
